@@ -36,6 +36,31 @@ public sealed class WorkshopUsersController : ControllerBase
             HttpContext.TraceIdentifier));
     }
 
-    // 5.8.2.2 / LAB 4: ให้ผู้เรียนสร้าง GET api/v1/workshop-users/{userId:guid}
-    // จากรูปแบบ Controller/Service/Repository ที่มีอยู่ แล้วเพิ่ม 200/404 ใน API contract
+    /// <summary>โหลดรายละเอียดผู้ใช้งานจาก User ID</summary>
+    /// <param name="userId">รหัสผู้ใช้งานรูปแบบ GUID</param>
+    /// <param name="cancellationToken">Token สำหรับยกเลิกคำขอ</param>
+    /// <response code="200">พบข้อมูลผู้ใช้งานและส่งรายละเอียดกลับ</response>
+    /// <response code="400">User ID ไม่ถูกต้องหรือเป็นค่า Guid.Empty</response>
+    /// <response code="404">ไม่พบผู้ใช้งานตาม User ID</response>
+    [HttpGet("{userId:guid}")]
+    [ProducesResponseType(typeof(WorkshopApiResponse<UserDetailDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<WorkshopApiResponse<UserDetailDto>>> GetById(
+        Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        // 5.8.2.2 / LAB 4: Controller -> Service -> Repository สำหรับ Detail Endpoint
+        var user = await _userService.GetByIdAsync(userId, cancellationToken);
+
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(new WorkshopApiResponse<UserDetailDto>(
+            user,
+            "โหลดข้อมูลผู้ใช้งานสำเร็จ",
+            HttpContext.TraceIdentifier));
+    }
 }
