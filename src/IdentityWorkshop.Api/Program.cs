@@ -11,9 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddWorkshopApplication();
 
+// 5.8.2.2 / LAB 2: จงแก้ ConnectionStrings__WorkshopDb ให้ชี้ชุดทดลองของผู้สอน
 var connectionString = builder.Configuration.GetConnectionString("WorkshopDb")
     ?? throw new InvalidOperationException(
-        // 5.8.2.2 / LAB 2: จงแก้ ConnectionStrings__WorkshopDb ให้ชี้ชุดทดลองของผู้สอน
         "ConnectionStrings:WorkshopDb is required. Set ConnectionStrings__WorkshopDb before starting the Workshop API.");
 
 builder.Services.AddWorkshopInfrastructure(connectionString);

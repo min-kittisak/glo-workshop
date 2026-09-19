@@ -23,6 +23,7 @@ public sealed class UserRepository : IUserRepository
         if (!string.IsNullOrWhiteSpace(query.Term))
         {
             // 5.8.2.3 / LAB 8: เริ่มจาก Contains/Leading Wildcard เพื่อเก็บ Baseline
+            // 5.8.2.3 / LAB 9: ปรับ Query ให้สัมพันธ์กับ Index แล้วเปรียบเทียบ Execution Plan
             var pattern = $"%{query.Term.Trim()}%";
             users = users.Where(user =>
                 EF.Functions.ILike(user.Username, pattern) ||

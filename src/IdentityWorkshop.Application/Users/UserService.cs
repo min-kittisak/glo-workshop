@@ -30,6 +30,7 @@ public sealed class UserService
 
     public async Task<UserDetailDto?> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
     {
+        // 5.8.2.2 / LAB 7: จุดสำหรับตรวจ Service/Repository flow และกรณี Not Found
         if (userId == Guid.Empty)
         {
             throw new ArgumentException("User ID must not be empty.", nameof(userId));
