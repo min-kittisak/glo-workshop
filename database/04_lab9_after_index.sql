@@ -1,4 +1,4 @@
--- Lab 12: create an index for a prefix-search variant, then compare the plan.
+-- 5.8.2.3 / LAB 9: create an index for a prefix-search variant, then compare the plan.
 -- The query shape must match the index expression; a leading wildcard cannot use
 -- a normal B-tree index efficiently.
 
@@ -25,4 +25,3 @@ WHERE is_active = true
   AND display_name ILIKE '%9999%'
 ORDER BY username
 LIMIT 20;
-

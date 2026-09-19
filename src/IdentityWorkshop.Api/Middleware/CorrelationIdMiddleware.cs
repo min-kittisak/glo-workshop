@@ -14,6 +14,7 @@ public sealed class CorrelationIdMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        // 5.8.2.2 / LAB 6: ใช้ Correlation ID เชื่อม Request, Response และ Log
         var correlationId = context.Request.Headers[HeaderName].FirstOrDefault();
         if (string.IsNullOrWhiteSpace(correlationId) || correlationId.Length > 100)
         {
@@ -29,4 +30,3 @@ public sealed class CorrelationIdMiddleware
         await _next(context);
     }
 }
-

@@ -17,5 +17,4 @@ CREATE TABLE IF NOT EXISTS workshop.users
 
 COMMENT ON TABLE workshop.users IS 'Training-only user directory for Identity Workshop';
 COMMENT ON COLUMN workshop.users.user_id IS 'Training user identifier';
-COMMENT ON COLUMN workshop.users.display_name IS 'Display name used for Lab 11/12 search exercises';
-
+COMMENT ON COLUMN workshop.users.display_name IS 'Display name used for Lab 8/9 search exercises';

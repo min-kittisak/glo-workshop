@@ -2,24 +2,26 @@
 
 ชุดนี้ตั้งใจให้ผู้สอนเตรียม PostgreSQL แยกจาก Repo และให้ผู้เรียนแก้โค้ดในชุดทดลองตามลำดับ Lab
 
+เลข LAB ใน Repo นี้รันใหม่แบบต่อเนื่อง: 5.8.2.2 ใช้ LAB 1-7 และ 5.8.2.3 ใช้ LAB 8-9
+
 ## Backend: 5.8.2.2
 
 | Lab | เป้าหมาย | จุดที่ผู้เรียนใช้ |
 | --- | --- | --- |
-| 4 | เปิด Solution และ Build | `IdentityWorkshop.slnx`, โครงสร้าง 4 Layers, Visual Studio 2026, .NET 10 |
-| 5 | รัน Backend และแก้ Configuration | `appsettings.Development.json`, `ConnectionStrings__WorkshopDb`, `/health` |
-| 6 | Debug และรัน Test | `UserService`, `UserServiceTests`, Breakpoint และ Output ของ Test |
-| 7 | เพิ่ม Endpoint จากแม่แบบ C# | `WorkshopUsersController`, `UserService`, `IUserRepository` |
-| 8 | เพิ่ม Validation และจำกัด Response | `UserSearchQuery`, `UserService.SearchAsync`, DTO ที่ส่งกลับ |
-| 9 | ทดสอบ 3 กรณีและอ่าน Log | Search สำเร็จ, Validation 400, Database/Unhandled Error 500, `X-Correlation-Id` |
-| 10 | ตรวจโครงสร้างและหาจุดเสี่ยง | Controller บาง, Service รับกติกา, Repository ทำ Query, ไม่มี Credential ใน Source |
+| 1 | เปิด Solution และ Build | `IdentityWorkshop.slnx`, โครงสร้าง 4 Layers, Visual Studio 2026, .NET 10 |
+| 2 | รัน Backend และแก้ Configuration | `appsettings.Development.json`, `ConnectionStrings__WorkshopDb`, `/health` |
+| 3 | Debug และรัน Test | `UserService`, `UserServiceTests`, Breakpoint และ Output ของ Test |
+| 4 | เพิ่ม Endpoint จากแม่แบบ C# | `WorkshopUsersController`, `UserService`, `IUserRepository` |
+| 5 | เพิ่ม Validation และจำกัด Response | `UserSearchQuery`, `UserService.SearchAsync`, DTO ที่ส่งกลับ |
+| 6 | ทดสอบ 3 กรณีและอ่าน Log | Search สำเร็จ, Validation 400, Database/Unhandled Error 500, `X-Correlation-Id` |
+| 7 | ตรวจโครงสร้างและหาจุดเสี่ยง | Controller บาง, Service รับกติกา, Repository ทำ Query, ไม่มี Credential ใน Source |
 
 ## Database: 5.8.2.3
 
 | Lab | เป้าหมาย | ไฟล์/จุดที่ใช้ |
 | --- | --- | --- |
-| 11 | สร้างตารางและวัดผลก่อน/หลัง Index | `database/01_create_schema.sql`, `02_seed_data.sql`, `03_lab11_before_index.sql` |
-| 12 | ปรับ Query และเปรียบเทียบผล | `database/04_lab12_after_index.sql`, `UserRepository.SearchAsync` |
+| 8 | สร้างตารางและวัดผลก่อน/หลัง Index | `database/01_create_schema.sql`, `02_seed_data.sql`, `03_lab8_before_index.sql` |
+| 9 | ปรับ Query และเปรียบเทียบผล | `database/04_lab9_after_index.sql`, `UserRepository.SearchAsync` |
 
 ## สิ่งที่ผู้สอนต้องเตรียม
 
@@ -49,4 +51,3 @@ Invoke-RestMethod "http://<API_HOST>:5082/api/v1/workshop-users/search?q=9999&li
 ## ขอบเขตข้อมูล
 
 ใช้เฉพาะข้อมูล Synthetic ที่สร้างจาก `02_seed_data.sql` ห้ามใช้ข้อมูลผู้ใช้งานจริง, Token, Password หรือ Connection String จริงใน Commit, Screenshot หรือหลักฐานส่งงาน
-

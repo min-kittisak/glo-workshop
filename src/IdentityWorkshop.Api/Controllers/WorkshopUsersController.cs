@@ -25,6 +25,8 @@ public sealed class WorkshopUsersController : ControllerBase
         [FromQuery] int limit = 20,
         CancellationToken cancellationToken = default)
     {
+        // 5.8.2.2 / LAB 1: เปิด Solution และตรวจเส้นทาง Controller -> Service
+        // 5.8.2.2 / LAB 6: เรียก API สำเร็จ/ผิดพลาดและติดตาม Correlation ID จาก Log
         _logger.LogInformation("Searching workshop users with term {SearchTerm} and limit {Limit}", q, limit);
 
         var users = await _userService.SearchAsync(new UserSearchQuery(q, limit), cancellationToken);
@@ -34,7 +36,6 @@ public sealed class WorkshopUsersController : ControllerBase
             HttpContext.TraceIdentifier));
     }
 
-    // LAB 7: ให้ผู้เรียนสร้าง GET api/v1/workshop-users/{userId:guid}
+    // 5.8.2.2 / LAB 4: ให้ผู้เรียนสร้าง GET api/v1/workshop-users/{userId:guid}
     // จากรูปแบบ Controller/Service/Repository ที่มีอยู่ แล้วเพิ่ม 200/404 ใน API contract
 }
-

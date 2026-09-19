@@ -4,6 +4,8 @@
 
 โครงการนี้ยกแนวคิดจาก Identity Service ของ GLO มาเหลือเฉพาะ User Directory ที่ใช้ฝึกเปิด Solution, รัน Backend, Debug, เพิ่ม Endpoint, เพิ่ม Validation, ตรวจ Log และปรับ Query/Index โดยไม่มี Keycloak, Redis, MinIO, Gateway หรือข้อมูล Production
 
+เลข LAB ใน Repo นี้รันใหม่แบบต่อเนื่อง: หลักสูตร 5.8.2.2 ใช้ LAB 1-7 และหลักสูตร 5.8.2.3 ใช้ LAB 8-9
+
 ## โครงสร้าง
 
 ```text
@@ -42,5 +44,4 @@ dotnet run --project src/IdentityWorkshop.Api --urls http://0.0.0.0:5082
 
 ## ลักษณะของชุดเริ่มต้น
 
-ชุดนี้เป็น Workshop starter ไม่ใช่ Production service โดยมีจุดที่ติดป้าย `LAB 7`, `LAB 8` และ `LAB 11/12` ไว้ในโค้ดสำหรับให้ผู้เรียนแก้หรือปรับปรุงตามโจทย์ ผู้สอนควรแจก Release/Tag เดียวกันให้ผู้เรียนทุกคน และเก็บเฉลยไว้คนละ Branch หรือพื้นที่ที่ผู้เรียนเข้าถึงไม่ได้
-
+ชุดนี้เป็น Workshop starter ไม่ใช่ Production service โดยมีจุดที่ติดป้าย `LAB 4`, `LAB 5` และ `LAB 8/9` ไว้ในโค้ดสำหรับให้ผู้เรียนแก้หรือปรับปรุงตามโจทย์ ผู้สอนควรแจก Release/Tag เดียวกันให้ผู้เรียนทุกคน และเก็บเฉลยไว้คนละ Branch หรือพื้นที่ที่ผู้เรียนเข้าถึงไม่ได้

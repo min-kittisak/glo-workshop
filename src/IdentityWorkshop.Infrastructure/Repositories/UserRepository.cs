@@ -17,11 +17,12 @@ public sealed class UserRepository : IUserRepository
         UserSearchQuery query,
         CancellationToken cancellationToken)
     {
+        // 5.8.2.3 / LAB 8-9: จุดวัด Query Plan ก่อน/หลังปรับ Query และ Index
         var users = _db.Users.AsNoTracking().Where(user => user.IsActive);
 
         if (!string.IsNullOrWhiteSpace(query.Term))
         {
-            // LAB 11/12: วัดผลค้นหาแบบ contains ก่อน แล้วปรับเป็น query ที่ใช้ Index ได้
+            // 5.8.2.3 / LAB 8: เริ่มจาก Contains/Leading Wildcard เพื่อเก็บ Baseline
             var pattern = $"%{query.Term.Trim()}%";
             users = users.Where(user =>
                 EF.Functions.ILike(user.Username, pattern) ||
@@ -39,4 +40,3 @@ public sealed class UserRepository : IUserRepository
             .AsNoTracking()
             .SingleOrDefaultAsync(user => user.UserId == userId, cancellationToken);
 }
-

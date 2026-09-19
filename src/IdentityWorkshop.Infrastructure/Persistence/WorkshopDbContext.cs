@@ -14,6 +14,7 @@ public sealed class WorkshopDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // 5.8.2.3 / LAB 8: ตรวจ Mapping ตาราง workshop.users ก่อนรัน SQL และวัด Query
         modelBuilder.Entity<WorkshopUser>(entity =>
         {
             entity.ToTable("users", "workshop");
@@ -29,4 +30,3 @@ public sealed class WorkshopDbContext : DbContext
         });
     }
 }
-

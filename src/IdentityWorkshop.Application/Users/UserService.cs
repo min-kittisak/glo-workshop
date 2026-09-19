@@ -15,11 +15,12 @@ public sealed class UserService
         UserSearchQuery query,
         CancellationToken cancellationToken)
     {
+        // 5.8.2.2 / LAB 3: จุดสำหรับวาง Breakpoint และตรวจค่าที่ไหลผ่าน Service
         ArgumentNullException.ThrowIfNull(query);
 
         var normalizedLimit = query.Limit <= 0 ? 20 : query.Limit;
 
-        // LAB 8: ให้ผู้เรียนเพิ่มกฎ upper bound และ Validation ที่เหมาะสมก่อนส่งต่อ Repository
+        // 5.8.2.2 / LAB 5: ให้ผู้เรียนเพิ่ม upper bound และ Validation ก่อนส่งต่อ Repository
         var users = await _repository.SearchAsync(
             query with { Term = query.Term?.Trim(), Limit = normalizedLimit },
             cancellationToken);
@@ -44,4 +45,3 @@ public sealed class UserService
     private static UserDetailDto MapDetail(WorkshopUser user) =>
         new(user.UserId, user.Username, user.DisplayName, user.EmailAddress, user.DepartmentCode, user.IsActive, user.CreatedAt);
 }
-
