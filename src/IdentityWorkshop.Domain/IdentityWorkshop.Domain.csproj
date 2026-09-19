@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>IdentityWorkshop.Domain</AssemblyName>
+    <RootNamespace>IdentityWorkshop.Domain</RootNamespace>
+  </PropertyGroup>
+</Project>
+

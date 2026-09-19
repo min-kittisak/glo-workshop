@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>IdentityWorkshop.Api</AssemblyName>
+    <RootNamespace>IdentityWorkshop.Api</RootNamespace>
+    <UserSecretsId>identity-workshop-local-only</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityWorkshop.Application\IdentityWorkshop.Application.csproj" />
+    <ProjectReference Include="..\IdentityWorkshop.Infrastructure\IdentityWorkshop.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.OpenApi" />
+  </ItemGroup>
+</Project>
