@@ -29,6 +29,8 @@ docs/                             แผนที่ Lab และการเ�
 5. รัน `dotnet run --project src/IdentityWorkshop.Api --urls http://0.0.0.0:5082`
 6. จากเครื่องผู้เรียนเรียก `http://<TRAINER_HOST>:5082/health` และ API ตามเอกสาร Lab
 
+เมื่อรันใน Development จะมี Scalar API Reference ที่ `http://<API_HOST>:5082/scalar` และ OpenAPI JSON ที่ `http://<API_HOST>:5082/openapi/v1.json`
+
 การเปิด `0.0.0.0` ใช้เฉพาะเครือข่าย Workshop ที่ได้รับอนุญาตเท่านั้น ห้ามใช้ Production Credential, ข้อมูลบุคคลจริง หรือเปิด Port นี้ออก Internet โดยตรง
 
 ## Connection String

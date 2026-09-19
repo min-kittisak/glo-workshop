@@ -2,6 +2,7 @@ using IdentityWorkshop.Api.Middleware;
 using IdentityWorkshop.Application;
 using IdentityWorkshop.Infrastructure;
 using Microsoft.AspNetCore.Diagnostics;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,7 @@ app.UseExceptionHandler(errorApp =>
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.MapGet("/health", () => Results.Ok(new
