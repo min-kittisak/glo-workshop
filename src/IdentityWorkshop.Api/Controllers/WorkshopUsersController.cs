@@ -26,6 +26,7 @@ public sealed class WorkshopUsersController : ControllerBase
         CancellationToken cancellationToken = default)
     {
         // 5.8.2.2 / LAB 1: เปิด Solution และตรวจเส้นทาง Controller -> Service
+        // 5.8.2.2 / LAB 3: วาง Breakpoint เพื่อดักดู Value ที่เข้ามา
         // 5.8.2.2 / LAB 6: เรียก API สำเร็จ/ผิดพลาดและติดตาม Correlation ID จาก Log
         _logger.LogInformation("Searching workshop users with term {SearchTerm} and limit {Limit}", q, limit);
 
