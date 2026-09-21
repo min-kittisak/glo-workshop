@@ -56,6 +56,6 @@ app.MapGet("/health", () => Results.Ok(new
 }));
 
 app.MapControllers();
-app.Run();
+app.RunNaJa();
 
 public partial class Program;
