@@ -21,11 +21,9 @@ public sealed class CorrelationIdMiddleware
             correlationId = Guid.NewGuid().ToString("N");
         }
 
+        context.TraceIdentifier = correlationId;
         context.Response.Headers[HeaderName] = correlationId;
-        using var scope = _logger.BeginScope(new Dictionary<string, object>
-        {
-            [HeaderName] = correlationId
-        });
+        using var scope = _logger.BeginScope("CorrelationId={CorrelationId}", correlationId);
 
         await _next(context);
     }

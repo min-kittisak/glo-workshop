@@ -7,7 +7,10 @@ using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+builder.Logging.AddSimpleConsole(options =>
+{
+    options.IncludeScopes = true;
+});
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddWorkshopApplication();
