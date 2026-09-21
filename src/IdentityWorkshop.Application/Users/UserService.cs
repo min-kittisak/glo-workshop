@@ -23,8 +23,7 @@ public sealed class UserService
 
         // 5.8.2.2 / LAB 5: ให้ผู้เรียนเพิ่ม upper bound และ Validation ก่อนส่งต่อ Repository
         var users = await _repository.SearchAsync(
-            // 5.8.2.2 / LAB 3 / MINI BUG 2: คำค้นควรถูกตัดช่องว่างก่อนส่งต่อ
-            query with { Term = query.Term, Limit = normalizedLimit },
+            query with { Term = query.Term?.Trim(), Limit = normalizedLimit },
             cancellationToken);
 
         return users.Select(MapListItem).ToList();
@@ -42,8 +41,11 @@ public sealed class UserService
         return user is null ? null : MapDetail(user);
     }
 
-    private static UserListItemDto MapListItem(WorkshopUser user) =>
-        new(user.UserId, user.Username, user.DisplayName, user.DepartmentCode, user.IsActive);
+    private static UserListItemDto MapListItem(WorkshopUser user)
+    {
+        // 5.8.2.2 / LAB 3 / MINI BUG 2: DisplayName ควรใช้ค่าจาก user.DisplayName
+        return new(user.UserId, user.Username, user.Username, user.DepartmentCode, user.IsActive);
+    }
 
     private static UserDetailDto MapDetail(WorkshopUser user) =>
         new(user.UserId, user.Username, user.DisplayName, user.EmailAddress, user.DepartmentCode, user.IsActive, user.CreatedAt);

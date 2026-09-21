@@ -18,22 +18,20 @@ public sealed class UserRepository : IUserRepository
         CancellationToken cancellationToken)
     {
         // 5.8.2.3 / LAB 8-9: จุดวัด Query Plan ก่อน/หลังปรับ Query และ Index
-        // 5.8.2.2 / LAB 3 / MINI BUG 3: ผลค้นหาควรแสดงเฉพาะผู้ใช้งานที่ยัง Active
-        var users = _db.Users.AsNoTracking();
+        var users = _db.Users.AsNoTracking().Where(user => user.IsActive);
 
         if (!string.IsNullOrWhiteSpace(query.Term))
         {
             // 5.8.2.3 / LAB 8: เริ่มจาก Contains/Leading Wildcard เพื่อเก็บ Baseline
             // 5.8.2.3 / LAB 9: ปรับ Query ให้สัมพันธ์กับ Index แล้วเปรียบเทียบ Execution Plan
             var pattern = $"%{query.Term.Trim()}%";
-            // 5.8.2.2 / LAB 3 / MINI BUG 4: ควรค้นหาทั้ง Username และ DisplayName
             users = users.Where(user =>
-                EF.Functions.ILike(user.Username, pattern));
+                EF.Functions.ILike(user.Username, pattern) ||
+                EF.Functions.ILike(user.DisplayName, pattern));
         }
 
         return await users
-            // 5.8.2.2 / LAB 3 / MINI BUG 5: ผลลัพธ์ควรเรียงตาม Username เพื่ออ่านง่าย
-            .OrderByDescending(user => user.Username)
+            .OrderBy(user => user.Username)
             .Take(query.Limit)
             .ToListAsync(cancellationToken);
     }
