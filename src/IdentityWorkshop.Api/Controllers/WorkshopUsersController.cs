@@ -30,7 +30,9 @@ public sealed class WorkshopUsersController : ControllerBase
         // 5.8.2.2 / LAB 6: เรียก API สำเร็จ/ผิดพลาดและติดตาม Correlation ID จาก Log
         _logger.LogInformation("Searching workshop users with term {SearchTerm} and limit {Limit}", q, limit);
 
-        var users = await _userService.SearchAsync(new UserSearchQuery(q, limit), cancellationToken);
+        // 5.8.2.2 / LAB 3 / MINI BUG 1: ลองเรียก Endpoint โดยไม่ส่ง q
+        var searchTerm = q.Trim();
+        var users = await _userService.SearchAsync(new UserSearchQuery(searchTerm, limit), cancellationToken);
         return Ok(new WorkshopApiResponse<IReadOnlyList<UserListItemDto>>(
             users,
             "ค้นหาข้อมูลผู้ใช้งานสำเร็จ",
@@ -53,6 +55,9 @@ public sealed class WorkshopUsersController : ControllerBase
     {
         // 5.8.2.2 / LAB 4: Controller -> Service -> Repository สำหรับ Detail Endpoint
         var user = await _userService.GetByIdAsync(userId, cancellationToken);
+
+        // 5.8.2.2 / LAB 3 / MINI BUG 2: ลองเรียกด้วย User ID ที่ไม่มีข้อมูล
+        _logger.LogInformation("Found workshop user {UserId}", user.Id);
 
         if (user is null)
         {
