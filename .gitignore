@@ -5,7 +5,9 @@ obj/
 TestResults/
 *.user
 *.suo
+appsettings.json
 appsettings.Local.json
 appsettings.Production.json
 *.env
+deploy/*
 
