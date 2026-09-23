@@ -1,20 +1,7 @@
--- Run as a database owner in the workshop database.
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+-- Migration สำหรับฐาน Workshop เดิมที่มีตาราง workshop.users อยู่แล้ว
+-- รหัสผ่านเริ่มต้นของผู้ใช้ตัวอย่างทุกคนคือ P@ssw0rd
 
-CREATE SCHEMA IF NOT EXISTS workshop;
-
-CREATE TABLE IF NOT EXISTS workshop.users
-(
-    user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    username varchar(100) NOT NULL,
-    password_hash varchar(100) NOT NULL DEFAULT '$2a$10$HN1PxLf/Es1Df9n/LTVLAezoFi7GttOr4LeZg3bjPXFKkJcySd3Wy',
-    display_name varchar(200) NOT NULL,
-    email_address varchar(255) NOT NULL,
-    department_code varchar(30),
-    is_active boolean NOT NULL DEFAULT true,
-    created_at timestamptz NOT NULL DEFAULT now(),
-    CONSTRAINT uq_workshop_users_username UNIQUE (username)
-);
+BEGIN;
 
 ALTER TABLE workshop.users
     ADD COLUMN IF NOT EXISTS password_hash varchar(100);
@@ -31,3 +18,5 @@ COMMENT ON TABLE workshop.users IS 'ตารางผู้ใช้ตัว�
 COMMENT ON COLUMN workshop.users.user_id IS 'รหัสผู้ใช้สำหรับชุด Workshop';
 COMMENT ON COLUMN workshop.users.password_hash IS 'รหัสผ่านแบบเข้ารหัส bcrypt สำหรับผู้ใช้ตัวอย่างของ Workshop';
 COMMENT ON COLUMN workshop.users.display_name IS 'ชื่อแสดงผลสำหรับแบบฝึกหัดค้นหาใน LAB 8 และ LAB 9';
+
+COMMIT;
